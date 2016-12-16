@@ -1,0 +1,62 @@
+<!--
+********************************************************
+    This page uses iframe to load each page so please use this if pages you want to rotate allows loading into iframe.
+********************************************************
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A Simple Page Rotator</title>
+    <style>
+        html {
+            overflow: auto;
+            height: 100%;
+        }
+
+        body {
+            overflow: auto;
+            height: 100%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            border: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="pageContainer"></iframe>
+    <script type="text/javascript">
+        //Page Configuration - START
+        var refreshInterval = 4000;
+        var urlArray = ['http://www.baidu.com', 'http://www.bing.com', 'http://usatoday.com'];
+
+        //Page Configuration - END
+
+        //Page rotator - START
+        var counter = 0;
+        var i = document.getElementById('pageContainer');
+        function changePage(stackCounter) {
+            counter = (counter >= urlArray.length) ? 0 : counter;
+            i.src = urlArray[counter++];
+            setTimeout(function (stackCounter) {
+                stackCounter = stackCounter || 0;
+                console.clear();
+                console.log(stackCounter++);
+                i.onload = changePage(stackCounter);
+            }, refreshInterval, stackCounter);
+        }
+        //Start Iterating
+        changePage();
+        //This is one best iteration patterns as per Ref:http://stackoverflow.com/questions/23178015/recursive-function-vs-setinterval-vs-settimeout-javascript
+        //Page rotator - END
+    </script>
+</body>
+</html>
