@@ -5,6 +5,6 @@ Takes URLs and loads each of them at particular intervals<br />
 Update below configuration as per your need.<br />
 
 ```javascript
-var refreshInterval = 4000;<br />
+var refreshInterval = 4000;
 var urlArray = ['http://www.baidu.com', 'http://www.bing.com', 'http://usatoday.com'];
 ```
